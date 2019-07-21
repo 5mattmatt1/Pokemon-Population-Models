@@ -1,0 +1,363 @@
+{
+    "bulbasaur" : {
+        "sex_ratio": "7:1",
+        "egg_group" : ["monster", "grass"]
+    },
+    "charmander": {
+        "sex_ratio" : "1:1",
+        "egg_group": ["monster", "dragon"]
+    },
+    "squirtle" : {
+        "egg_group": ["monster", "water_1"]
+    },
+    "caterpie" : {
+        "sex_ratio": "1:1",
+        "egg_group": ["bug"]
+    },
+    "weedle" : {
+        "sex_ratio": "1:1",
+        "egg_group": ["bug"]
+    },
+    "pidgey": {
+        "sex_ratio" : "1:1",
+        "egg_group": ["flying"]
+    },
+    "rattata": {
+        "sex_ratio": "1:1",
+        "egg_group": ["field"]
+    },
+    "spearow": {
+        "sex_ratio": "1:1",
+        "egg_group": ["flying"],
+        "egg_cycles": 15
+    },
+    "ekans": {
+        "sex_ratio": "1:1",
+        "egg_group": ["dragon", "field"],
+        "egg_cycles": 20
+    },
+    "pikachu": {
+        "sex_ratio": "1:1",
+        "egg_group": ["fairy", "field"],
+        "egg_cycles": 10
+    },
+    "sandshrew": {
+        "id": 27,
+        "sex_ratio": "1:1",
+        "egg_group": ["field"],
+        "egg_cycles": 20
+    },
+    "nidoran": {
+        "id": 29,
+        "sex_ratio": "1:1",
+        "egg_group": ["field", "monster"],
+        "egg_cycles": 20
+    },
+    "clefairy": {
+        "id": 35,
+        "sex_ratio": "1:3",
+        "egg_group": ["fairy"],
+        "egg_cycles": 10
+    },
+    "vulpix": {
+        "id": 37,
+        "sex_ratio": "1:3",
+        "egg_group": ["field"],
+        "egg_cycles": 20
+    },
+    "jigglypuff": {
+        "id": 39,
+        "sex_ratio": "1:3",
+        "egg_group": ["fairy"],
+        "egg_cycles": 10
+    },
+    "zubat": {
+        "id": 41,
+        "sex_ratio": "1:1",
+        "egg_group": ["flying"],
+        "egg_cycles": 15
+    },
+    "oddish": {
+        "id": 43,
+        "sex_ratio": "1:1",
+        "egg_group": ["grass"],
+        "egg_cycles": 20
+    },
+    "paras": {
+        "id": 46,
+        "sex_ratio": "1:1",
+        "egg_group": ["bug", "grass"],
+        "egg_cycles": 20
+    },
+    "venonat": {
+        "id": 48,
+        "sex_ratio": "1:1",
+        "egg_group": ["bug"],
+        "egg_cycles": 20
+    },
+    "diglett": {
+        "id": 50,
+        "sex_ratio": "1:1",
+        "egg_group": ["field"],
+        "egg_cycles": 20
+    },
+    "meowth": {
+        "id": 52,
+        "sex_ratio": "1:1",
+        "egg_group": ["field"],
+        "egg_cycles": 20
+    },
+    "psyduck": {
+        "id": 54,
+        "sex_ratio": "1:1",
+        "egg_group": ["field", "water_1"],
+        "egg_cycles": 20
+    },
+    "mankey": {
+        "id": 56,
+        "sex_ratio": "1:1",
+        "egg_group": ["field"],
+        "egg_cycles": 20
+    },
+    "growlithe": {
+        "id": 58,
+        "sex_ratio": "3:1",
+        "egg_group": ["field"],
+        "egg_cycles": 20
+    },
+    "poliwag": {
+        "id": 60,
+        "sex_ratio": "1:1",
+        "egg_group": ["water_1"],
+        "egg_cycles": 20
+    },
+    "abra": {
+        "id": 63,
+        "sex_ratio": "3:1",
+        "egg_group": ["human_like"],
+        "egg_cycles": 20
+    },
+    "machop": {
+        "id": 66,
+        "sex_ratio": "3:1",
+        "egg_group": ["human_like"],
+        "egg_cycles": 20
+    },
+    "bellsprout": {
+        "id": 69,
+        "sex_ratio": "1:1",
+        "egg_group": ["grass"],
+        "egg_cycles": 20
+    },
+    "tentacool": {
+        "id": 72,
+        "sex_ratio": "1:1",
+        "egg_group": ["water_3"],
+        "egg_cycles": 20
+    },
+    "geodude": {
+        "id": 74,
+        "sex_ratio": "1:1",
+        "egg_group": ["mineral"],
+        "egg_cycles": 15
+    },
+    "ponyta": {
+        "id": 77,
+        "sex_ratio": "1:1",
+        "egg_group": ["field"],
+        "egg_cycles": 20
+    },
+    "slowpoke": {
+        "id": 79,
+        "sex_ratio": "1:1",
+        "egg_group": ["monster", "water_1"],
+        "egg_cycles": 20
+    },
+    "farfetch'd": {
+        "id": 83,
+        "sex_ratio": "1:1",
+        "egg_group": ["field", "flying"],
+        "egg_cycles": 20
+    },
+    "dodou": {
+        "id": 84,
+        "sex_ratio": "1:1",
+        "egg_group": ["flying"],
+        "egg_cycles": 20
+    },
+    "seel": {
+        "id": 86,
+        "sex_ratio": "1:1",
+        "egg_group": ["field", "water_1"],
+        "egg_cycles": 20
+    },
+    "grimer": {
+        "id": 88,
+        "sex_ratio": "1:1",
+        "egg_group": ["amorphous"],
+        "egg_cycles": 20
+    },
+    "shellder": {
+        "id": 90,
+        "sex_ratio": "1:1",
+        "egg_group": ["water_3"],
+        "egg_cycles": 20
+    },
+    "gastly": {
+        "id": 92,
+        "sex_ratio": "1:1",
+        "egg_group": ["amorphous"],
+        "egg_cycles": 20
+    },
+    "onix": {
+        "id": 95,
+        "sex_ratio": "1:1",
+        "egg_group": ["mineral"],
+        "egg_cycles": 25
+    },
+    "drowzee": {
+        "id": 96,
+        "sex_ratio": "1:1",
+        "egg_group": ["human_like"],
+        "egg_cycles": 20
+    },
+    "krabby": {
+        "id": 98,
+        "sex_ratio": "1:1",
+        "egg_group": ["water_3"],
+        "egg_cycles": 20
+    },
+    "exeggcute": {
+        "id": 102,
+        "sex_ratio": "1:1",
+        "egg_group": ["grass"],
+        "egg_cycles": 20
+    },
+    "cubone": {
+        "id": 104,
+        "sex_ratio": "1:1",
+        "egg_group": ["monster"],
+        "egg_cycles": 20
+    },
+    "tyrogue": {
+        "id": 106,
+        "sex_ratio": "1:1",
+        "egg_group": ["human_like"],
+        "egg_cycles": 25
+    },
+    "lickitung": {
+        "id": 108,
+        "sex_ratio": "1:1",
+        "egg_group": ["monster"],
+        "egg_cycles": 20
+    },
+    "koffing": {
+        "id": 109,
+        "sex_ratio": "1:1",
+        "egg_group": ["amorphous"],
+        "egg_cycles": 20
+    },
+    "rhyhorn": {
+        "id": 111,
+        "sex_ratio": "1:1",
+        "egg_group": ["field", "monster"],
+        "egg_cycles": 20
+    },
+    "tangela": {
+        "id": 114,
+        "sex_ratio": "1:1",
+        "egg_group": ["grass"],
+        "egg_cycles": 20
+    },
+    "horsea": {
+        "id": 116,
+        "sex_ratio": "1:1",
+        "egg_group": ["dragon", "water_1"],
+        "egg_cycles": 20
+    },
+    "goldeen": {
+        "id": 118,
+        "sex_ratio": "1:1",
+        "egg_group": ["water_2"],
+        "egg_cycles": 20
+    },
+    "mr_mime": {
+        "id": 122,
+        "sex_ratio": "1:1",
+        "egg_group": ["human_like"],
+        "egg_cycles": 25
+    },
+    "scyther": {
+        "id": 123,
+        "sex_ratio": "1:1",
+        "egg_group": ["bug"],
+        "egg_cycles": 25
+    },
+    "electabuzz": {
+        "id": 125,
+        "sex_ratio": "3:1",
+        "egg_group": ["human_like"],
+        "egg_cycles": 25
+    },
+    "magmar": {
+        "id": 126,
+        "sex_ratio": "3:1",
+        "egg_group": ["human_like"],
+        "egg_cycles": 25
+    },
+    "pinsir": {
+        "id": 127,
+        "sex_ratio": "1:1",
+        "egg_group": ["bug"],
+        "egg_cycles": 25
+    },
+    "magikarp": {
+        "id": 129,
+        "sex_ratio": "1:1",
+        "egg_group": ["dragon", "water_2"],
+        "egg_cycles": 5
+    },
+    "lapras": {
+        "id": 131,
+        "sex_ratio": "1:1",
+        "egg_group": ["monster", "water_1"],
+        "egg_cycles": 40
+    },
+    "eevee": {
+        "id": 133,
+        "sex_ratio": "7:1",
+        "egg_group": ["field"],
+        "egg_cycles": 35
+    },
+    "omanyte": {
+        "id": 138,
+        "sex_ratio": "7:1",
+        "egg_group": ["water_1", "water_3"],
+        "egg_cycles": 30
+    },
+    "kabuto": {
+        "id": 140,
+        "sex_ratio": "7:1",
+        "egg_group": ["water_1", "water_3"],
+        "egg_cycles": 30
+    },
+    "aerodactyl": {
+        "id": 142,
+        "sex_ratio": "7:1",
+        "egg_group": ["flying"],
+        "egg_cycles": 35
+    },
+    "snorlax": {
+        "id": 143,
+        "sex_ratio": "7:1",
+        "egg_group": ["monster"],
+        "egg_cycles": 40
+    },
+    "dratini": {
+        "id": 147,
+        "sex_ratio": "1:1",
+        "egg_group": ["dragon", "water_1"],
+        "egg_cycles": 40
+    }
+
+}
