@@ -9,10 +9,13 @@
 # within the same egg group, or they must have a secondary means of reproduction, 
 # which is beyond the scope of this simple script
 """
+# Built-ins
 from argparse import ArgumentParser
 from collections import deque
-from csv import DictWriter
+from csv import DictWriter, DictReader
 from random import randint
+# Libraries gotten from pip
+from matplotlib import pyplot as plt
 
 CSV_FILE = "BulbasaurPopulation.csv"
 FIELD_NAMES = ['tick', 'female', 'male']
@@ -76,6 +79,31 @@ def lay_eggs(fertility_rate, female_pop):
         if lay_egg <= fertility_rate:
             eggs_lain += 1
     return eggs_lain
+
+def generate_plot():
+    """
+    Uses matplotlib to generate a simple plot
+    from the data in the exported csv file.
+    """
+    # Labels the axises and title of the plot
+    plt.title("Pokemon Population Model")
+    plt.ylabel("Population")
+    plt.xlabel("Tick")
+
+    xaxis_ticks = []
+    yaxis_male_pop = []
+    yaxis_female_pop = []
+    with open(CSV_FILE, 'r', newline='') as csv_file:
+        for row in DictReader(csv_file):
+            # Matplotlib is not a fan of non-float values
+            xaxis_ticks.append(float(row["tick"]))
+            yaxis_female_pop.append(float(row["female"]))
+            yaxis_male_pop.append(float(row["male"]))
+
+    plt.plot(xaxis_ticks, yaxis_female_pop, label="Female Population")
+    plt.plot(xaxis_ticks, yaxis_male_pop, label="Male Population")
+    plt.legend()
+    plt.show()
 
 def main():
     # Parses out any command line arguments
@@ -146,6 +174,7 @@ def main():
         elif population["female"] <= 0 and not any(eggs):      
             print("Extinction")
             break
+    generate_plot()
 
 # It is usually best practice to add
 # this snippet to the end of your main python script.

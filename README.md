@@ -3,9 +3,13 @@ This is a project meant to back up the theory that starter pokemon are so rare d
 
 You can hear more about the purpose of this script in the [YouTube video](https://www.youtube.com/watch?v=OccWmmaCqlE)
 
+# Setup
+Note: this script will only run for Python 3.x not for Python 2.x.
+To install dependencies simply run:
+pip3 install -r requirements.txt
+
 # Simplifications by Austin
-+ All species use the same egg cycle
-+ As long as 
++ The model is really only for bulbasaur
 + 'Human' impact on the environment is shown by dropping the fertility rate down to the same rate as if there were no remaining males within the populaiton and the females were forced to breed with other species within the same egg group.
 
 ## Planned changes by me
