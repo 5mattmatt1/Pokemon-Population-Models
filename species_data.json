@@ -1,42 +1,60 @@
 {
     "bulbasaur" : {
+        "id": 1,
         "sex_ratio": "7:1",
-        "egg_group" : ["monster", "grass"]
+        "egg_group" : ["monster", "grass"],
+        "egg_cycles" : 20
     },
     "charmander": {
+        "id": 4,
         "sex_ratio" : "1:1",
-        "egg_group": ["monster", "dragon"]
+        "egg_group": ["monster", "dragon"],
+        "egg_cycles": 20
     },
     "squirtle" : {
-        "egg_group": ["monster", "water_1"]
+        "id": 7,
+        "sex_ratio": "1:1",
+        "egg_group": ["monster", "water_1"],
+        "egg_cycles": 20
     },
     "caterpie" : {
+        "id": 10,
         "sex_ratio": "1:1",
-        "egg_group": ["bug"]
+        "egg_group": ["bug"],
+        "egg_cycles": 15
     },
     "weedle" : {
+        "id": 13,
         "sex_ratio": "1:1",
-        "egg_group": ["bug"]
+        "egg_group": ["bug"],
+        "egg_cycles": 15
     },
     "pidgey": {
+        "id": 16,
         "sex_ratio" : "1:1",
-        "egg_group": ["flying"]
+        "egg_group": ["flying"],
+        "egg_cycles": 15
     },
     "rattata": {
+        "id": 19,
         "sex_ratio": "1:1",
-        "egg_group": ["field"]
+        "egg_group": ["field"],
+        "egg_cycles": 15
     },
     "spearow": {
+        "id": 21,
         "sex_ratio": "1:1",
         "egg_group": ["flying"],
         "egg_cycles": 15
     },
     "ekans": {
+        "id": 23,
         "sex_ratio": "1:1",
         "egg_group": ["dragon", "field"],
         "egg_cycles": 20
     },
     "pikachu": {
+        "id": 25,
         "sex_ratio": "1:1",
         "egg_group": ["fairy", "field"],
         "egg_cycles": 10
@@ -359,5 +377,4 @@
         "egg_group": ["dragon", "water_1"],
         "egg_cycles": 40
     }
-
 }

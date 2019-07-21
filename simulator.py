@@ -13,31 +13,48 @@
 from argparse import ArgumentParser
 from collections import deque
 from csv import DictWriter, DictReader
-from random import randint
+from random import randint, random
+import json
 # Libraries gotten from pip
 from matplotlib import pyplot as plt
 
-CSV_FILE = "BulbasaurPopulation.csv"
+CSV_FILE = "{}_population.csv"
+# CSV_FILE = "bulbasaur_population.csv"
+SPECIES_DATA_FILE = "species_data.json"
 FIELD_NAMES = ['tick', 'female', 'male']
 # Not sure the exact meaning of this number. 
 # It feels two specific to be random.
+# The only thing I could think of is that it is roughly
+# The threshold required for a member of a population to 
+# have a 50% chance to die every egg cycle.
 DEATH_THRESHOLD = 243
+STARTING_POPULATION = 16
 MAX_POPULATION = 20000
 EGG_CYCLE = 20
 
 # According to PEP 8, all functions and variables should be named with snake_case.
-def csv_write_header():
+def csv_write_header(species):
+    """
+    Create a new csv file for the given species
+    and writes the header to it so that it can be read in later.
+    """
     # There is no need to call csv_file.close()
     # since files are also ContextManagers meaning 
     # that they handle all cleanup code when they exit the block
     # including when errors occur.
     # Look into PEP 343 for ore information
-    with open(CSV_FILE, 'w', newline='') as csv_file:
+    csv_file_name = CSV_FILE.format(species)
+    with open(csv_file_name, 'w', newline='') as csv_file:
         writer = DictWriter(csv_file, fieldnames=FIELD_NAMES)
         writer.writeheader()
 
-def csv_write_row(tick, population):
-    with open(CSV_FILE, 'a', newline='') as csv_file:
+def csv_write_row(species, tick, population):
+    """
+    Writes a new row to the csv file for the given species
+    detailing the population for the current tick.
+    """
+    csv_file_name = CSV_FILE.format(species)
+    with open(csv_file_name, 'a', newline='') as csv_file:
         writer = DictWriter(csv_file, fieldnames=FIELD_NAMES)
         row = {'tick': tick}
         row.update(population)
@@ -45,22 +62,25 @@ def csv_write_row(tick, population):
 
 def death_tick(population, sex):
     """
-
+    For every member of a population of the given sex,
+    do a check to see if they should die this tick.
     """
     for _ in range(population[sex]):
         death = randint(1, 10000)
         if death <= DEATH_THRESHOLD:
             population[sex] -= 1
 
-def hatch_tick(eggs_ready_to_hatch, population):
+def hatch_tick(eggs_ready_to_hatch, population, male_ratio):
     """
-
+    Hatches all eggs for this tick and determines their sex and increases 
+    the population of the corresponding sex.
     """
-    print("{} Bulbasaur eggs are hatching!".format(eggs_ready_to_hatch))
+    print("{} eggs are hatching!".format(eggs_ready_to_hatch))
     for _ in range(eggs_ready_to_hatch):
-        sexroll = randint(1, 8)
-        # Bulbasaur have a 7:1 gender ratio.
-        if sexroll <= 7:
+        # random.random generates a float between [0.0, 1.0) making it ideal for working
+        # with percentages.
+        sexroll = random()
+        if sexroll <= male_ratio:
             population["male"] += 1
         else:
             population["female"] += 1
@@ -80,20 +100,22 @@ def lay_eggs(fertility_rate, female_pop):
             eggs_lain += 1
     return eggs_lain
 
-def generate_plot():
+def generate_plot(species):
     """
     Uses matplotlib to generate a simple plot
     from the data in the exported csv file.
     """
     # Labels the axises and title of the plot
     plt.title("Pokemon Population Model")
-    plt.ylabel("Population")
+    plt.ylabel("Population of {}".format(species))
     plt.xlabel("Tick")
 
     xaxis_ticks = []
     yaxis_male_pop = []
     yaxis_female_pop = []
-    with open(CSV_FILE, 'r', newline='') as csv_file:
+
+    csv_file_name = CSV_FILE.format(species)
+    with open(csv_file_name, 'r', newline='') as csv_file:
         for row in DictReader(csv_file):
             # Matplotlib is not a fan of non-float values
             xaxis_ticks.append(float(row["tick"]))
@@ -105,28 +127,75 @@ def generate_plot():
     plt.legend()
     plt.show()
 
+def get_species_data(species):
+    """
+    Simply reads in the JSON file holding all the species data for species within
+    the Kanto region.
+    """
+    with open(SPECIES_DATA_FILE, 'r') as json_file:
+        try:
+            species_data = json.load(json_file)[species]
+        except KeyError as e:
+            print("Species {} not found".format(species))
+    return species_data
+
+def get_raw_sex_ratio(species):
+    """
+    Reads in the raw sex ratio from the species data JSON file and simply breaks it out
+    into raw male and female sex ratios.
+    """
+    species_data = get_species_data(species)
+    try:
+        sex_ratio = species_data["sex_ratio"]
+    except KeyError as e:
+        print("Malformed JSON entry")
+    male_ratio_raw, female_ratio_raw = sex_ratio.split(":")
+    return int(male_ratio_raw), int(female_ratio_raw)
+
+def convert_sex_ratio(male_ratio_raw, female_ratio_raw):
+    """
+    Converts between the raw ratio to the percentages for each
+    Example: 7:1 raw ratio to 87.5% male and 12.5% male
+    """
+    total_raw = float(male_ratio_raw + female_ratio_raw)
+    male_ratio = male_ratio_raw / total_raw
+    female_ratio = female_ratio_raw / total_raw
+
+    return (male_ratio, female_ratio)
+
+def get_sex_ratio(species):
+    """
+    Simple shorthand for using get_raw_sex_ratio and converting it to percentages.
+    """
+    male_ratio_raw, female_ratio_raw = get_raw_sex_ratio(species)
+    return convert_sex_ratio(male_ratio_raw, female_ratio_raw)
+
 def main():
     # Parses out any command line arguments
     parser = ArgumentParser()
     parser.add_argument("--human", action='store_true', 
                                 help="Toggles human interaction in the environment")
+    parser.add_argument("species", action='store', nargs='?', default="bulbasaur",
+                                help="Which species of pokemon to simulate")
     vargs = parser.parse_args()
 
-    # Simple 7:1 starting population
-    population = {"male": 14, "female": 2}
-    male_pop = 14
-    female_pop = 2
+    species_data = get_species_data(vargs.species)
+    male_ratio, female_ratio = get_sex_ratio(vargs.species)
+
+    # Creates a starting population based on the sex ratio of that species
+    population = {"male": int(round(male_ratio * STARTING_POPULATION)), 
+                  "female": int(round(female_ratio * STARTING_POPULATION))}
     tick = 0
     # Length of 21
     # I think this has to do with egg cyles and how the egg cycle for Bulbasaur is 20 
     # So an egg at index 0 is 
     current_cycle = 0
     # The egg cycle for bulbasaurs is 20, so we want to make our deque that size.
-    eggs = deque([0] * EGG_CYCLE)
-    csv_write_header()
+    eggs = deque([0] * species_data["egg_cycles"])
+    csv_write_header(vargs.species)
 
     while True:
-        csv_write_row(tick, population)
+        csv_write_row(vargs.species, tick, population)
         tick += 1
         print("Tick:", tick)
         death_tick(population, "female")
@@ -139,7 +208,7 @@ def main():
         # No need to check if eggs_ready_to_hatch is non-zero
         # as hatch_tick does an iteration for each integer between
         # 0 and the number of eggs ready to hatch. Which for 0, is a nop.
-        hatch_tick(eggs_ready_to_hatch, population)
+        hatch_tick(eggs_ready_to_hatch, population, male_ratio)
 
         fertility_rate = 0
         # Introduction of humans to the population
@@ -174,7 +243,7 @@ def main():
         elif population["female"] <= 0 and not any(eggs):      
             print("Extinction")
             break
-    generate_plot()
+    generate_plot(vargs.species)
 
 # It is usually best practice to add
 # this snippet to the end of your main python script.
